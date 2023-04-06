@@ -1,4 +1,4 @@
-# Machine Learning for Plugins
+# Machine Learning for Bukkit Plugins
 ![Latest Release](https://img.shields.io/badge/LATEST_UPDATE-2023--04--06-red.svg)
 
 ## Introduction
