@@ -19,7 +19,7 @@ that includes explanations of how the machine learning models operate. To unders
 , feel free to browse the repository and investigate the different plugins. 
 
 ## Resources
-1. [Implementing Machine Learning in Your Plugins: An Introduction](https://www.spigotmc.org/threads/implementing-machine-learning-in-your-plugins-an-introduction.599387/#post-4570664) 
+1. [Implementing Machine Learning in Your Plugins: An Introduction](https://www.spigotmc.org/threads/implementing-machine-learning-in-your-plugins-an-introduction.599387/) 
 -The use of machine learning in Minecraft plugins is explained in this post on the SpigotMC forums. If you're unfamiliar with the subject and want to learn more
 , this is an excellent place to start.
 
