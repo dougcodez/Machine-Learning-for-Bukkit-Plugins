@@ -21,7 +21,7 @@ that includes explanations of how the machine learning models operate. To unders
 ## Resources
 1. [Implementing Machine Learning in Your Plugins: An Introduction](https://www.spigotmc.org/threads/implementing-machine-learning-in-your-plugins-an-introduction.599387/) 
 -The use of machine learning in Minecraft plugins is explained in this post on the SpigotMC forums. If you're unfamiliar with the subject and want to learn more, this is an excellent place to start.
-2. [Implementing Machine Learning in Your Plugins: RNN](https://www.spigotmc.org/threads/implementing-machine-learning-into-your-plugins-rnn.599565/)
+2. [Implementing Machine Learning in Your Plugins: RNN](https://www.spigotmc.org/threads/implementing-machine-learning-in-your-plugins-rnn.599565/)
 -I demonstrate how developers could implement a basic recurrent neural network into their Bukkit plugin. 
 
   
