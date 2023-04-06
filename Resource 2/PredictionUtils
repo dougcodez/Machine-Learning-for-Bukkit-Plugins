@@ -1,0 +1,36 @@
+package io.github.dougcodez.spamorham;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class PredictionUtils {
+
+    private static AtomicReference<Double> predictionGrabber = new AtomicReference<>();
+    private static final Map<String, Double> predictionMap = new LinkedHashMap<>();
+
+
+    public static boolean containsSpam(RNNModel rnnModel, String message) {
+        int inputSize = 100; // length of input message
+        double[] input = new double[inputSize];
+
+        for (int i = 0; i < inputSize; i++) {
+            if (i < message.length()) {
+                input[i] = (double) message.charAt(i) / 256.0; // normalize input
+            } else {
+                input[i] = 0.0;
+            }
+        }
+        double[] output = rnnModel.predict(input);
+        predictionGrabber.set(output[0]);
+        return output[0] >= 0.85; // threshold for spam phrases
+    }
+
+    public static double getPrediction() {
+        return predictionGrabber.get();
+    }
+
+    public static Map<String, Double> getPredictionMap() {
+        return predictionMap;
+    }
+}
