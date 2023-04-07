@@ -9,8 +9,7 @@ import java.util.List;
 public class SpamOrHam extends JavaPlugin {
 
     public void onEnable(){
-        getConfig().options().copyDefaults(true);
-        saveConfig();
+        //This list creates a list of inputs for our model to train on
         List<String> inputs = Arrays.asList(
                 "Urgent: You have won a free cruise to the Bahamas!",
                 "Your account has been suspended. Click here to restore access.",
@@ -34,22 +33,31 @@ public class SpamOrHam extends JavaPlugin {
                 "Take care and talk to you soon!"
         );
 
+        //This create a list of outputs for our model to train on. 1 = spam, 0 = ham (not spam)
         List<Integer> targets = Arrays.asList(
                 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ); // 1 for spam, 0 for ham
+        );
 
 
-        // create model
+        /**
+         * These are out hyperparameters. These are the values that we can change to get a better model.
+         */
         int inputSize = 100; // length of input message
         int hiddenSize = 32;
         int outputSize = 1; // single output for binary classification
         double learningRate = 0.05;
         int numEpochs = 1000;
 
+        //This creates a new RNNModel with the given hyperparameters
         RNNModel rnn = new RNNModel(inputSize, hiddenSize, outputSize);
 
-        // train model
+        /*
+         * Here we initially prepare the data our model to train on.
+         * @X holds on to the inputs and @Y holds on to the target outputs
+         * We then loop the inputs, and normalize the input characters. Any remaining data are set to 0
+         * Once both the X and Y arrays are filled, we then train the model
+         */
         double[][] X = new double[inputs.size()][inputSize];
         double[][] Y = new double[inputs.size()][outputSize];
         for (int i = 0; i < inputs.size(); i++) {
@@ -66,8 +74,7 @@ public class SpamOrHam extends JavaPlugin {
         }
         rnn.train(X, Y, numEpochs, learningRate);
 
-
-
+        //Register the SpamOrHam Listener and PredictionsCommand
         Bukkit.getPluginManager().registerEvents(new SpamOrHamListener(rnn), this);
         getCommand("predictions").setExecutor(new PredictionCommand());
     }
@@ -76,3 +83,4 @@ public class SpamOrHam extends JavaPlugin {
 
     }
 }
+
